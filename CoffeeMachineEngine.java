@@ -6,29 +6,34 @@ public class CoffeeMachineEngine {
         firstStorage = storage;
     }
 
-    public boolean checkStorageForMakeCoffee(CoffeeType drinkType) {
-        if(drinkType == CoffeeType.ESPRESSO && firstStorage.getWater() >= 250 && firstStorage.getCoffeeBean() >= 16 &&  firstStorage.getDisposableCups() > 0) {
-            makeCoffee(250, 0, 16, 1, 4);
+    public boolean drinkTypeSelection(CoffeeType drinkType) {
+        if(drinkType == CoffeeType.ESPRESSO && checkStorage(drinkType)) {
+            makeCoffee(drinkType);
             return true;
         }
-        if(drinkType == CoffeeType.LATTE && firstStorage.getWater() >= 250 && firstStorage.getCoffeeBean() >= 16 &&  firstStorage.getDisposableCups() > 0) {
-            makeCoffee(350, 75, 20, 1, 7);
+        if(drinkType == CoffeeType.LATTE && checkStorage(drinkType)) {
+            makeCoffee(drinkType);
             return true;
         }
-        if(drinkType == CoffeeType.CAPPUCCINO && firstStorage.getWater() >= 250 && firstStorage.getCoffeeBean() >= 16 &&  firstStorage.getDisposableCups() > 0) {
-            makeCoffee(200, 100, 12, 1, 6);
+        if(drinkType == CoffeeType.CAPPUCCINO && checkStorage(drinkType)) {
+            makeCoffee(drinkType);
             return true;
         }
         return false;
     }
 
-    private void makeCoffee(int water, int milk, int coffeeBean, int disposableCups, int price) {
-        firstStorage.setWater(firstStorage.getWater() - water);
-        firstStorage.setMilk(firstStorage.getMilk() - milk);
-        firstStorage.setCoffeeBean(firstStorage.getCoffeeBean() - coffeeBean);
-        firstStorage.setDisposableCups(firstStorage.getDisposableCups() - disposableCups);
-        firstStorage.setCash(firstStorage.getCash() + price);
+    private boolean checkStorage(CoffeeType drinkType) {
+        return (firstStorage.getWater() >= drinkType.getWaterVolume() && firstStorage.getMilk() >= drinkType.getMilkVolume()
+                && firstStorage.getCoffeeBean() >= drinkType.getCoffeeBeanWeight()
+                &&  firstStorage.getDisposableCups() >= drinkType.getDisposableCupsPiece());
+    }
 
+    private void makeCoffee(CoffeeType drinkType) {
+        firstStorage.setWater(firstStorage.getWater() - drinkType.getWaterVolume());
+        firstStorage.setMilk(firstStorage.getMilk() - drinkType.getMilkVolume());
+        firstStorage.setCoffeeBean(firstStorage.getCoffeeBean() - drinkType.getCoffeeBeanWeight());
+        firstStorage.setDisposableCups(firstStorage.getDisposableCups() - drinkType.getDisposableCupsPiece());
+        firstStorage.setCash(firstStorage.getCash() + drinkType.getCoffeePrice());
     }
 
     public void takeMoney() {

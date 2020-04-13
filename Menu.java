@@ -1,7 +1,7 @@
 package com.coffeeMachine;
 
 public class Menu {
-    Storage storage = new Storage(0 ,0 ,0, 0, 0);
+    Storage storage = new Storage(5000 ,5000 ,1000, 100, 0);
     CoffeeMachineEngine machine = new CoffeeMachineEngine(storage);
     UserInput input = new UserInput();
 
@@ -32,18 +32,18 @@ public class Menu {
     private void fill() throws NumberFormatException{
         try {
             System.out.println("Write how many ml of water do you want to add:");
-            int water = Integer.parseInt(input.choice());
+            int  waterVolumeML = Integer.parseInt(input.choice());
 
             System.out.println("Write how many ml of milk do you want to add:");
-            int milk = Integer.parseInt(input.choice());
+            int  MilkVolumeML = Integer.parseInt(input.choice());
 
             System.out.println("Write how many grams of coffee beans do you want to add:");
-            int coffeeBean = Integer.parseInt(input.choice());
+            int coffeeBeanWeigh = Integer.parseInt(input.choice());
 
             System.out.println("Write how many disposable cups of coffee do you want to add:");
-            int disCups = Integer.parseInt(input.choice());
+            int disposableCupsPiece = Integer.parseInt(input.choice());
 
-            storage.fillStorage(water, milk, coffeeBean, disCups);
+            storage.fillStorage(waterVolumeML, MilkVolumeML, coffeeBeanWeigh, disposableCupsPiece);
         }
         catch (NumberFormatException e) {
             System.out.println("Write only numbers!");
@@ -51,19 +51,19 @@ public class Menu {
     }
 
     private void chooseCoffee() throws NumberFormatException {
-        System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:");
+        System.out.println("What do you want to buy? Espresso, Latte or Cappuccino:");
         boolean canMakeCoffeeOrNot = false;
         try {
             String choice = input.choice();
 
             if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.ESPRESSO))) {
-                canMakeCoffeeOrNot = machine.checkStorageForMakeCoffee(CoffeeType.ESPRESSO);
+                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.ESPRESSO);
             }
             else if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.LATTE))) {
-                canMakeCoffeeOrNot = machine.checkStorageForMakeCoffee(CoffeeType.LATTE);
+                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.LATTE);
             }
             else if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.CAPPUCCINO))) {
-                canMakeCoffeeOrNot = machine.checkStorageForMakeCoffee(CoffeeType.CAPPUCCINO);
+                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.CAPPUCCINO);
             }
             else System.out.println("No such drink");
         }
