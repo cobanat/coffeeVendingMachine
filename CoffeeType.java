@@ -9,14 +9,14 @@ public enum CoffeeType {
     private final int milkVolume;
     private final int coffeeBeanWeight;
     private final int disposableCupsPiece;
-    private final int CoffeePrice;
+    private final int coffeePrice;
 
     CoffeeType(int water, int milk, int coffeeBean, int disposableCups, int price) {
         waterVolume = water;
         milkVolume = milk;
         coffeeBeanWeight = coffeeBean;
         disposableCupsPiece = disposableCups;
-        CoffeePrice = price;
+        coffeePrice = price;
     }
 
     public int getWaterVolume() {
@@ -36,6 +36,6 @@ public enum CoffeeType {
     }
 
     public int getCoffeePrice() {
-        return CoffeePrice;
+        return coffeePrice;
     }
 }

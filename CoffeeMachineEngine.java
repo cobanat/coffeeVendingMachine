@@ -7,19 +7,10 @@ public class CoffeeMachineEngine {
     }
 
     public boolean drinkTypeSelection(CoffeeType drinkType) {
-        if(drinkType == CoffeeType.ESPRESSO && checkStorage(drinkType)) {
-            makeCoffee(drinkType);
-            return true;
-        }
-        if(drinkType == CoffeeType.LATTE && checkStorage(drinkType)) {
-            makeCoffee(drinkType);
-            return true;
-        }
-        if(drinkType == CoffeeType.CAPPUCCINO && checkStorage(drinkType)) {
-            makeCoffee(drinkType);
-            return true;
-        }
-        return false;
+        if(!checkStorage(drinkType)) return false;
+        makeCoffee(drinkType);
+        return true;
+
     }
 
     private boolean checkStorage(CoffeeType drinkType) {

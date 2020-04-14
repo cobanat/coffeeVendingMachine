@@ -50,29 +50,23 @@ public class Menu {
         }
     }
 
-    private void chooseCoffee() throws NumberFormatException {
+    private void chooseCoffee() {
         System.out.println("What do you want to buy? Espresso, Latte or Cappuccino:");
-        boolean canMakeCoffeeOrNot = false;
-        try {
-            String choice = input.choice();
+        boolean canMakeCoffeeOrNot;
+        String choice = input.choice();
 
-            if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.ESPRESSO))) {
-                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.ESPRESSO);
-            }
-            else if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.LATTE))) {
-                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.LATTE);
-            }
-            else if (choice.equalsIgnoreCase(String.valueOf(CoffeeType.CAPPUCCINO))) {
-                canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.CAPPUCCINO);
-            }
-            else System.out.println("No such drink");
-        }
-        catch (NumberFormatException e) {
-            System.out.println("Choose from 1 to 31");
-        }
+        if (SearchDrink(choice)) {
+            canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.valueOf(choice.toUpperCase()));
 
-        if(canMakeCoffeeOrNot) System.out.println("I have enough resources, making you a coffee!");
-        else System.out.println("Sorry, not enough resources!");
+            if (canMakeCoffeeOrNot) System.out.println("I have enough resources, making you a coffee!");
+            else System.out.println("Sorry, not enough resources!");
+
+        } else System.out.println("No such drink");
+
+    }
+    private boolean SearchDrink(String choice) {
+        return (choice.equalsIgnoreCase(CoffeeType.ESPRESSO.name())) || (choice.equalsIgnoreCase(CoffeeType.LATTE.name()))
+                || (choice.equalsIgnoreCase(CoffeeType.CAPPUCCINO.name()));
 
     }
 

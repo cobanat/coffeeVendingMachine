@@ -16,10 +16,10 @@ public class Storage {
     }
 
     public void fillStorage(int fillWater, int fillMilk, int fillCoffeeBean, int fillDisposableCups) {
-        water = water + fillWater;
-        milk = milk + fillMilk;
-        coffeeBean = coffeeBean + fillCoffeeBean;
-        disposableCups = disposableCups + fillDisposableCups;
+        water += fillWater;
+        milk += fillMilk;
+        coffeeBean += fillCoffeeBean;
+        disposableCups += fillDisposableCups;
     }
 
     public int takeCash() {
