@@ -52,22 +52,18 @@ public class Menu {
 
     private void chooseCoffee() {
         System.out.println("What do you want to buy? Espresso, Latte or Cappuccino:");
-        boolean canMakeCoffeeOrNot;
-        String choice = input.choice();
-
-        if (SearchDrink(choice)) {
-            canMakeCoffeeOrNot = machine.drinkTypeSelection(CoffeeType.valueOf(choice.toUpperCase()));
-
-            if (canMakeCoffeeOrNot) System.out.println("I have enough resources, making you a coffee!");
-            else System.out.println("Sorry, not enough resources!");
-
-        } else System.out.println("No such drink");
-
-    }
-    private boolean SearchDrink(String choice) {
-        return (choice.equalsIgnoreCase(CoffeeType.ESPRESSO.name())) || (choice.equalsIgnoreCase(CoffeeType.LATTE.name()))
-                || (choice.equalsIgnoreCase(CoffeeType.CAPPUCCINO.name()));
-
+        boolean canMakeCoffee;
+        CoffeeType coffeeType = CoffeeType.findByName(input.choice());
+        if (coffeeType == CoffeeType.UNKNOWN) {
+            System.out.println("No such drink");
+        } else {
+            canMakeCoffee = machine.drinkTypeSelection(coffeeType);
+            if (canMakeCoffee) {
+                System.out.println("I have enough resources, making you a coffee!");
+            } else {
+                System.out.println("Sorry, not enough resources!");
+            }
+        }
     }
 
     public void showStorage() {

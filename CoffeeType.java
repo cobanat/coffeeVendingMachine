@@ -3,7 +3,8 @@ package com.coffeeMachine;
 public enum CoffeeType {
     ESPRESSO(250, 0, 16, 1, 4),
     LATTE(350, 75, 20, 1, 7),
-    CAPPUCCINO(200, 100, 12, 1, 6);
+    CAPPUCCINO(200, 100, 12, 1, 6),
+    UNKNOWN(0, 0, 0, 0, 0);
 
     private final int waterVolume;
     private final int milkVolume;
@@ -37,5 +38,14 @@ public enum CoffeeType {
 
     public int getCoffeePrice() {
         return coffeePrice;
+    }
+
+    static CoffeeType findByName(String coffeeTypeName) {
+        for (CoffeeType coffeeType : CoffeeType.values()) {
+            if (coffeeType.name().equalsIgnoreCase(coffeeTypeName)) {
+                return coffeeType;
+            }
+        }
+        return UNKNOWN;
     }
 }

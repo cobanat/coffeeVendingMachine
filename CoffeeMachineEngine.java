@@ -1,7 +1,7 @@
 package com.coffeeMachine;
 
 public class CoffeeMachineEngine {
-    Storage firstStorage;
+    private final Storage firstStorage;
     public CoffeeMachineEngine(Storage storage) {
         firstStorage = storage;
     }
