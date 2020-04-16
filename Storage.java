@@ -1,5 +1,11 @@
 package com.coffeeMachine;
-
+/**
+ * Класс реализующий хранилище кофемашины
+ *
+ * @author Nail Zinnurov
+ * @version 2.0
+ *
+ * */
 public class Storage {
     private int water;
     private int milk;
@@ -20,13 +26,13 @@ public class Storage {
         milk += fillMilk;
         coffeeBean += fillCoffeeBean;
         disposableCups += fillDisposableCups;
-    }
+    } // Пополнение хранилища сырьем
 
     public int takeCash() {
         int money = cash;
         cash = 0;
         return money;
-    }
+    } // Выдача денег
 
     public int getWater() {
         return water;

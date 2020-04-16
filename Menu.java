@@ -1,7 +1,15 @@
 package com.coffeeMachine;
-
+/**
+ * Класс реализующий интерактивное меню для пользователя,
+ * с выбором необходимых дейсвтий, а так же с выводом
+ * необходимой информации.
+ *
+ * @author Nail Zinnurov
+ * @version 2.0
+ *
+ * */
 public class Menu {
-    Storage storage = new Storage(5000 ,5000 ,1000, 100, 0);
+    Storage storage = new Storage(5000 ,5000 ,1000, 100, 0); // Исходные количество сырья в хранилище
     CoffeeMachineEngine machine = new CoffeeMachineEngine(storage);
     UserInput input = new UserInput();
 
@@ -27,7 +35,7 @@ public class Menu {
                     break;
             }
         } while (!"exit".equalsIgnoreCase(choice));
-    }
+    } // Выбор действия пользователем
 
     private void fill() throws NumberFormatException{
         try {
@@ -48,7 +56,7 @@ public class Menu {
         catch (NumberFormatException e) {
             System.out.println("Write only numbers!");
         }
-    }
+    } // Ввод необходимого колличества сырья для пополнения хранилища
 
     private void chooseCoffee() {
         System.out.println("What do you want to buy? Espresso, Latte or Cappuccino:");
@@ -64,7 +72,7 @@ public class Menu {
                 System.out.println("Sorry, not enough resources!");
             }
         }
-    }
+    } // Выбор необходмого напитка
 
     public void showStorage() {
         System.out.println();
@@ -74,5 +82,5 @@ public class Menu {
         System.out.println(storage.getCoffeeBean() + " of coffee beans");
         System.out.println(storage.getDisposableCups() + " of disposable cups");
         System.out.println(storage.getCash() + " of money");
-    }
+    } // Вывод остатков в хранилище
 }

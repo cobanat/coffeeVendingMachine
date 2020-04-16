@@ -1,5 +1,10 @@
 package com.coffeeMachine;
-
+/**
+ * База данных кофемашины и поиском выбранного кофе.
+ *
+ * @author Nail Zinnurov
+ * @version 2.0
+ * */
 public enum CoffeeType {
     ESPRESSO(250, 0, 16, 1, 4),
     LATTE(350, 75, 20, 1, 7),
@@ -47,5 +52,5 @@ public enum CoffeeType {
             }
         }
         return UNKNOWN;
-    }
+    } // Поиск выбранного кофе
 }
